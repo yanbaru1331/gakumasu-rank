@@ -23,5 +23,5 @@ discord: `yanbaru_popo`
 x: `kaito_tippu`
 
 ## 参考文献
-[スプレッドシート]{https://docs.google.com/spreadsheets/d/1eEdzfHGi7iXpohR-UHr5-W1z7PcYBqQr8OAV7gcvhR8/edit#gid=0}
-[WEB版計算機]{https://x.com/nok0714/status/1798148446416937059}
+[スプレッドシート](https://docs.google.com/spreadsheets/d/1eEdzfHGi7iXpohR-UHr5-W1z7PcYBqQr8OAV7gcvhR8/edit#gid=0)
+[WEB版計算機](https://x.com/nok0714/status/179814844641693705)
