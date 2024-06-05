@@ -1,0 +1,9 @@
+services:
+  python:
+    build: .
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - GUID=${GUILD_ID}
+    volumes:
+      - .:/Gakumasu
+    tty: true
