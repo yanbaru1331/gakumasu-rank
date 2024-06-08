@@ -30,12 +30,13 @@ def convTest(convScore: int):
     # 30000~40000
     temp = temp - 200
     if(temp <= 0):
-        return int(((convScore- 3250) / 0.02) + score)
+        return int(((convScore- 3450) / 0.02) + score)
     score += 10000
     
     # 40000~
-    return int(((convScore- 3450) / 0.01) + score)
+    return int(((convScore- 3650) / 0.01) + score)
 
+ 
 def rankCal(rank: int, vo: int, da: int, vi: int, precedence: int):
 # ランク区分認識処理
     match rank:
@@ -79,9 +80,23 @@ def rankCal(rank: int, vo: int, da: int, vi: int, precedence: int):
     if(vi > 1500):
         vi = 1500
     status = math.ceil((vo + da + vi) * 2.3)
-# 1位であることを前提として計算
+
     convScore = req - (basepoint + status)
     if(convScore <= 0):
         return 0
     return convTest(convScore)
 
+
+def reverseCal(vo: int ,da: int,vi: int, score: int):
+    vo -= 30
+    da -= 30
+    vi -= 30
+    # 突貫で作るけど、多分ここに1500のときの処理が必要
+    temp  = []
+    for i in (1700, 900, 500, 0):
+        temp.append(convTest(score - (i + math.ceil((vo + da + vi) * 2.3))))
+
+    
+    return temp
+    
+print(reverseCal(1500,1500,500, 13000))

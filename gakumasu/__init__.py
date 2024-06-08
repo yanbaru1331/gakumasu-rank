@@ -57,7 +57,16 @@ async def rank(
     precedence:int = 1 
 ):
     res = cal.rankCal(rank.value,vo,da,vi, precedence)
-    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}で順位が{precedence}位のとき、ランク{rank.name}に必要なスコアは{res}です")
+    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}で順位が{precedence}位のとき、ランク{rank.name}に必要なスコアは{res}点です")
 
+
+@client.tree.command(name="gaku-reverse", description="評価値->最終試験スコア逆算用コマンド")
+async def rank(
+    interaction: discord.Interaction,
+    vo: r=0, da: r=0, vi: r=0,
+    score:int = 1 
+):
+    res = cal.reverseCal(vo,da,vi,score)
+    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}でスコア{score}を取るための最終試験の点数は推定{res}点です")
 
 client.run(os.environ['DISCORD_TOKEN'])
