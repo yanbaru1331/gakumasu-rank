@@ -26,7 +26,7 @@ class Myclient(discord.Client):
         await self.tree.sync(guild=GUILD_ID)
 
 r = Range[int, 0, 1500]
-
+p = Range[int, 1, 5]
 client = Myclient(intents=intents)
 # 起動確認
 print(intents.members)
@@ -53,10 +53,11 @@ async def on_ready():
 async def rank(
     interaction: discord.Interaction,
     rank: app_commands.Choice[int]=1,
-    vo: r=0, da: r=0, vi: r=0
+    vo: r=0, da: r=0, vi: r=0,
+    precedence:int = 1 
 ):
-    res = cal.rankCal(rank.value,vo,da,vi)
-    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}で、ランク{rank.name}に必要なスコアは{res}です")
+    res = cal.rankCal(rank.value,vo,da,vi, precedence)
+    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}で順位が{precedence}位のとき、ランク{rank.name}に必要なスコアは{res}です")
 
 
 client.run(os.environ['DISCORD_TOKEN'])

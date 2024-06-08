@@ -36,7 +36,7 @@ def convTest(convScore: int):
     # 40000~
     return int(((convScore- 3450) / 0.01) + score)
 
-def rankCal(rank: int, vo: int, da: int, vi: int):
+def rankCal(rank: int, vo: int, da: int, vi: int, precedence: int):
 # ランク区分認識処理
     match rank:
         case 1:
@@ -57,7 +57,17 @@ def rankCal(rank: int, vo: int, da: int, vi: int):
 
         case _:
             req = 0
-
+    
+    match  precedence:
+        case 1:
+            basepoint = 1700
+        case 2:
+            basepoint = 900
+        case 3:
+            basepoint = 500
+        case _:
+            basepoint = 0
+            
 # 育成終了後VoDaVi合計*2.3
     vo += 30
     da += 30
@@ -70,7 +80,7 @@ def rankCal(rank: int, vo: int, da: int, vi: int):
         vi = 1500
     status = math.ceil((vo + da + vi) * 2.3)
 # 1位であることを前提として計算
-    convScore = req - (1700 + status)
+    convScore = req - (basepoint + status)
     if(convScore <= 0):
         return 0
     return convTest(convScore)
