@@ -5,39 +5,39 @@ def convTest(convScore: int):
     score = 0
     temp = convScore - 1500
     if(temp <= 0):
-        return int(convScore / 0.3)
+        return math.ceil(convScore / 0.3)
     
     score = 5000
     
     # 5000~10000
     temp = temp - 750
     if(temp <= 0):
-        return int(((convScore- 1500) / 0.15) + score)
+        return math.ceil(((convScore- 1500) / 0.15) + score)
     score += 5000
     
     # 10000~20000
     temp = temp - 800
     if(temp <= 0):
-        return int(((convScore - 2250) / 0.08) + score)
+        return math.ceil(((convScore - 2250) / 0.08) + score)
     score += 10000
     
     # 20000~30000
     temp = temp - 400
     if(temp <= 0):
-        return int(((convScore - 3050) / 0.04) + score)
+        return math.ceil(((convScore - 3050) / 0.04) + score)
     score += 10000
     
     # 30000~40000
     temp = temp - 200
     if(temp <= 0):
-        return int(((convScore- 3450) / 0.02) + score)
+        return math.ceil(((convScore- 3450) / 0.02) + score)
     score += 10000
     
     # 40000~
-    return int(((convScore- 3650) / 0.01) + score)
+    return math.ceil(((convScore- 3650) / 0.01) + score)
 
  
-def rankCal(rank: int, vo: int, da: int, vi: int, precedence: int):
+def rankCal(vo: int, da: int, vi: int, rank: int, precedence: int):
 # ランク区分認識処理
     match rank:
         case 1:
@@ -91,12 +91,13 @@ def reverseCal(vo: int ,da: int,vi: int, score: int):
     vo -= 30
     da -= 30
     vi -= 30
+    status = math.ceil((vo + da + vi) * 2.3)
     # 突貫で作るけど、多分ここに1500のときの処理が必要
     temp  = []
     for i in (1700, 900, 500, 0):
-        temp.append(convTest(score - (i + math.ceil((vo + da + vi) * 2.3))))
+        
+        temp.append(convTest(score - (i+status)))
 
     
     return temp
-    
-print(reverseCal(1500,1500,500, 13000))
+print(rankCal(1000,1000,300, 1, 1))
