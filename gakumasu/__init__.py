@@ -41,6 +41,7 @@ async def on_ready():
 
 @client.tree.command(name="gaku-rank", description="ランク計算用コマンド")
 @app_commands.choices(rank=[
+        app_commands.Choice(name="S+", value=6),
         app_commands.Choice(name="S", value=1),
         app_commands.Choice(name="A+", value=2),
         app_commands.Choice(name="A", value=3),
@@ -56,8 +57,9 @@ async def rank(
     vo: r=0, da: r=0, vi: r=0,
     precedence:int = 1 
 ):
-    res = cal.rankCal(rank.value,vo,da,vi, precedence)
-    await interaction.response.send_message(f"Vo={vo},Da={da},Vi={vi}で順位が{precedence}位のとき、ランク{rank.name}に必要なスコアは{res}点です")
+    await interaction.response.defer()
+    res = cal.rankCal(vo,da,vi, rank.value, precedence)
+    await interaction.followup.send(f"Vo={vo},Da={da},Vi={vi}で順位が{precedence}位のとき、ランク{rank.name}に必要なスコアは{res}点です")
 
 
 @client.tree.command(name="gaku-reverse", description="評価値->最終試験スコア逆算用コマンド")

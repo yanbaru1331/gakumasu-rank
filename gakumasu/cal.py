@@ -55,6 +55,8 @@ def rankCal(vo: int, da: int, vi: int, rank: int, precedence: int):
         case 5:
             # B
             req = 6000
+        case 6:
+            req = 14500
 
         case _:
             req = 0
@@ -100,4 +102,4 @@ def reverseCal(vo: int ,da: int,vi: int, score: int):
 
     
     return temp
-print(rankCal(1000,1000,300, 1, 1))
+print(rankCal(1111,1111,1111, 6, 1))
