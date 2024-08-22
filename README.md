@@ -6,6 +6,14 @@ docker compose build
 docker compose up -d
 ```
 アタッチ後
+
+## poetryの構築にcargoが必要(???)なので
+その準備とpoetryのインストール
+```
+curl https://sh.rustup.rs -sSf | sh
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
 `.env`ファイルを作成し
 discordのトークンとギルドIDを記載する
 (サンプルは掲載してあります。サンプルを使用する場合は`.sample`を削除してください)
